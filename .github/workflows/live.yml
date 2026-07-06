@@ -11,10 +11,8 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: Setup FFmpeg Latest
-        uses: FedericoCarboni/setup-ffmpeg@v3
-        with:
-          architecture: x64
+      - name: Install Latest FFmpeg (Official)
+        run: sudo snap install ffmpeg
 
       - name: Setup Python
         uses: actions/setup-python@v5
