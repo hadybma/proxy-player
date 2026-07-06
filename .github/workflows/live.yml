@@ -1,7 +1,7 @@
 name: Facebook Live Streamer
 
 on:
-  workflow_dispatch: # গিটহাব থেকে ম্যানুয়ালি ক্লিক করে লাইভ চালু করার জন্য
+  workflow_dispatch:
 
 jobs:
   live-stream:
@@ -11,10 +11,10 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: Install FFmpeg
-        run: |
-          sudo apt update
-          sudo apt install ffmpeg -y
+      - name: Setup FFmpeg Latest
+        uses: FedericoCarboni/setup-ffmpeg@v3
+        with:
+          architecture: x64
 
       - name: Setup Python
         uses: actions/setup-python@v5
