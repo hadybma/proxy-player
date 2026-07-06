@@ -13,10 +13,12 @@ if not stream_key:
 
 rtmp_url = f"rtmps://live-api-s.facebook.com:443/rtmp/{stream_key}"
 
-# FFmpeg কমান্ড
+# FFmpeg কমান্ড আপডেট করা হয়েছে (Map যুক্ত করে)
 command = [
     "ffmpeg",
     "-i", m3u8_url,
+    "-map", "0:v:0",  # লিংক থেকে শুধুমাত্র প্রথম/প্রধান ভিডিও স্ট্রিমটি নেবে
+    "-map", "0:a:0",  # লিংক থেকে শুধুমাত্র প্রথম/প্রধান অডিও স্ট্রিমটি নেবে
     "-c", "copy",
     "-f", "flv",
     rtmp_url
