@@ -1,0 +1,27 @@
+name: Facebook Live Streamer
+
+on:
+  workflow_dispatch: # গিটহাব থেকে ম্যানুয়ালি ক্লিক করে লাইভ চালু করার জন্য
+
+jobs:
+  live-stream:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Install FFmpeg
+        run: |
+          sudo apt update
+          sudo apt install ffmpeg -y
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Start Live Stream
+        env:
+          FB_STREAM_KEY: ${{ secrets.FB_STREAM_KEY }}
+        run: python stream.py
